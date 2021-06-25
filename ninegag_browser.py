@@ -21,6 +21,12 @@ MAX_ATTEMPTS_FOR_ACTION = 5
 class NinegagBrowser(contextlib.AbstractContextManager):
 
     def __init__(self, **options):
+        self._start()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._quit()
+
+    def _start(self, **options):
         """
         Opens a new WebDriver instance and browses to 9GAG homepage
         """
@@ -28,7 +34,7 @@ class NinegagBrowser(contextlib.AbstractContextManager):
         self.driver.maximize_window()
         self.driver.get(NINEGAG_URL)
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def _quit(self):
         self.driver.quit()
 
     def go_to_section(self, section_name: str, fresh: bool = False):

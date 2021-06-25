@@ -1,4 +1,4 @@
-from ninegag import NinegagBrowser
+from ninegag_browser import NinegagBrowser
 from const import WEBDRIVER_PATH  # Be sure to update Gechodriver location
 
 
