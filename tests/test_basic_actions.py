@@ -3,9 +3,9 @@ import pytest
 from tests import TestingNinegagBrowser
 
 
-def test_activate_nightmode():
+def test_click_nightmode_button():
     with TestingNinegagBrowser() as ninegag_browser:
-        ninegag_browser.activate_nightmode()
+        ninegag_browser.click_nightmode_button()
 
 
 @pytest.mark.parametrize('section', ['Funny', 'hot'])
