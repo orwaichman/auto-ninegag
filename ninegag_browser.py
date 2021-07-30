@@ -1,15 +1,14 @@
-import contextlib
 import datetime
 import itertools
 import json
 import time
 
-from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 
+from browser import Browser
 from const import NINEGAG_URL, NinegagXPaths
 from ninegag_post import NinegagPost
 from exceptions import AuthenticationRequired, InvalidAction
@@ -18,24 +17,13 @@ MAX_DELAY = 10  # Seconds
 MAX_ATTEMPTS_FOR_ACTION = 5
 
 
-class NinegagBrowser(contextlib.AbstractContextManager):
-
-    def __init__(self, **options):
-        self._start(**options)
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self._quit()
-
+class NinegagBrowser(Browser):
     def _start(self, **options):
         """
         Opens a new WebDriver instance and browses to 9GAG homepage
         """
-        self.driver = webdriver.Firefox(**options)
-        self.driver.maximize_window()
+        super()._start(**options)
         self.driver.get(NINEGAG_URL)
-
-    def _quit(self):
-        self.driver.quit()
 
     def go_to_section(self, section_name: str, fresh: bool = False):
         """
@@ -69,7 +57,7 @@ class NinegagBrowser(contextlib.AbstractContextManager):
 
     def click_nightmode_button(self):
         """
-        Activates dark theme, so the user won't have to be blinded by the default theme
+        Turns night mode on or off
         """
         self.driver.find_element_by_xpath(NinegagXPaths.NIGHT_MODE_BUTTON).click()
 
