@@ -21,7 +21,7 @@ MAX_ATTEMPTS_FOR_ACTION = 5
 class NinegagBrowser(contextlib.AbstractContextManager):
 
     def __init__(self, **options):
-        self._start()
+        self._start(**options)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._quit()
@@ -67,7 +67,7 @@ class NinegagBrowser(contextlib.AbstractContextManager):
         except NoSuchElementException:
             raise InvalidAction(f'Section "{section_name}" was not found')
 
-    def activate_nightmode(self):
+    def click_nightmode_button(self):
         """
         Activates dark theme, so the user won't have to be blinded by the default theme
         """
