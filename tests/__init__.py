@@ -1,9 +1,9 @@
 from const import WEBDRIVER_PATH
-from ninegag_browser import NinegagBrowser
+from ninegag_selenium_browser import NinegagSeleniumBrowser
 
 
 # Modifying NinegagBrowser used for testing to be a single instance class that can only be closed explicitly
-class TestingNinegagBrowser(NinegagBrowser):
+class TestingNinegagBrowser(NinegagSeleniumBrowser):
     _instance = None
     def __new__(cls, *args, **kwargs):
         if not cls._instance:

@@ -1,4 +1,4 @@
-from ninegag_browser import NinegagBrowser
+from ninegag_basic_browser import NinegagBrowser
 from const import WEBDRIVER_PATH
 
 
