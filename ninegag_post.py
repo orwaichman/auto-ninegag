@@ -12,7 +12,10 @@ class NinegagPost(object):
                  post_type=None,
                  comment_count=None,
                  publish_time=None,
-                 fetch_time=None
+                 fetch_time=None,
+                 comments=None,
+                 tags=None,
+                 original_poster=None
                  ):
         self.post_id = post_id
         self.post_type = post_type
@@ -23,6 +26,9 @@ class NinegagPost(object):
         self.comment_count = comment_count
         self.publish_time = publish_time
         self.fetch_time = fetch_time
+        self.comments = comments
+        self.tags = tags
+        self.original_poster = original_poster
 
     @property
     def url(self):

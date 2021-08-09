@@ -3,11 +3,12 @@ WEBDRIVER_PATH = r'C:\OtherPrograms\geckodriver.exe'  # Be sure to install Gecko
 NINEGAG_URL = "https://9gag.com"
 NINEGAG_POST_URL_TEMPLATE = f"{NINEGAG_URL}/gag/{{post_id}}"
 NINEGAG_IMAGE_URL_TEMPLATE = "https://img-9gag-fun.9cache.com/photo/{post_id}_700bwp.webp"
+NON_BOT_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36'
 
 
 # There might be some work to do here in order to make the xpaths persist through 9GAG interface updates
 class NinegagXPaths:
-    SECTION_LIST = '//*[@id="container"]/div[1]/div/section/ul'  # Do not use xpath on its own, only with contain()
+    SECTION_LIST = '//*[@id="container"]//section/ul'  # Do not use xpath on its own, only with contain()
     SECTION_LIST_ITEM = f'{SECTION_LIST}/li/a'  # Do not use xpath on its own, only with contain()
     NIGHT_MODE_BUTTON = '//*[@id="top-nav"]/div/div/div[1]/a[1]'
     LOGIN_LINK = '//*[@id="top-nav"]/div/div/div[2]/a[1]'
@@ -21,6 +22,7 @@ class NinegagXPaths:
         SUBMIT_BUTTON = '//*[@id="login-email"]/div[3]/input'
 
     class Post:
+        URL_META = '//meta[contains(@property, "url")]'
         _ARTICLE = '//*[@id="individual-post"]/article'
         UPVOTE_BUTTON = f'{_ARTICLE}//div[contains(@class, "vote")]//a[contains(@class, "up")]'
         DOWNVOTE_BUTTON = f'{_ARTICLE}//div[contains(@class, "vote")]//a[contains(@class, "down")]'

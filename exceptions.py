@@ -1,3 +1,7 @@
+class NoSuchElement(RuntimeError):
+    pass
+
+
 class AuthenticationRequired(RuntimeError):
     pass
 
